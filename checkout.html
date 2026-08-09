@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Complete your MDCATEMY revision plan enrollment." />
+    <title>Complete Enrollment | MDCATEMY</title>
+    <link rel="preload" href="assets/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="checkout.css?v=20260809-2" />
+  </head>
+  <body>
+    <header class="checkout-header">
+      <a class="checkout-brand" href="index.html" aria-label="MDCATEMY home">
+        <img src="assets/MDCATEMY-logo.webp" alt="MDCATEMY" />
+      </a>
+      <a class="checkout-back" href="index.html#plans">
+        <span aria-hidden="true">&larr;</span>
+        Back to plans
+      </a>
+    </header>
+
+    <main class="checkout-main" data-checkout>
+      <section class="checkout-intro">
+        <p class="checkout-kicker">Final step</p>
+        <h1>Complete your enrollment</h1>
+        <p>Transfer the fee to the bank account and upload the receipt here.</p>
+      </section>
+
+      <section class="checkout-card plan-picker" aria-labelledby="choose-plan-title">
+        <div class="section-heading">
+          <span class="section-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M20.6 13.6 13.7 20.5a2 2 0 0 1-2.8 0L3.5 13.1a2 2 0 0 1-.6-1.4V5a2 2 0 0 1 2-2h6.7a2 2 0 0 1 1.4.6l7.6 7.2a2 2 0 0 1 0 2.8Z"/><circle cx="8" cy="8" r="1.5"/></svg>
+          </span>
+          <span>
+            <h2 id="choose-plan-title">Choose your plan</h2>
+            <p>You can still switch plans before submitting your payment.</p>
+          </span>
+        </div>
+
+        <div class="checkout-plan-grid">
+          <label class="checkout-plan-card">
+            <input type="radio" name="checkout_plan" value="quiz-builder" data-checkout-plan />
+            <span class="plan-card-top"><strong>Quiz Builder</strong><b>PKR 2,500</b></span>
+            <span class="plan-card-copy">Personalised MCQ practice</span>
+          </label>
+
+          <label class="checkout-plan-card">
+            <input type="radio" name="checkout_plan" value="rapid-revision" data-checkout-plan />
+            <span class="plan-card-top"><strong>Rapid Revision</strong><b>PKR 3,500</b></span>
+            <span class="plan-card-copy">Guided science revision</span>
+          </label>
+
+          <label class="checkout-plan-card checkout-plan-featured">
+            <input type="radio" name="checkout_plan" value="all-in-one" data-checkout-plan />
+            <span class="plan-card-badge">Best value</span>
+            <span class="plan-card-top"><strong>All-in-One</strong><b>PKR 4,000</b></span>
+            <span class="plan-card-copy">Quiz Builder + Rapid Revision</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="order-summary" aria-label="Your selected plan and total">
+        <div>
+          <span class="summary-label">MDCAT 2026 revision</span>
+          <p data-plan-name>All-in-One Revision Package</p>
+          <small data-plan-description>Quiz Builder + Rapid Revision Session</small>
+        </div>
+        <div class="summary-total">
+          <span>Total due</span>
+          <strong data-plan-total>PKR 4,000</strong>
+          <small>One-time payment</small>
+        </div>
+      </section>
+
+      <div class="payment-layout">
+        <section class="checkout-card payment-proof" aria-labelledby="payment-proof-title">
+          <div class="section-heading">
+            <span class="section-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 2h12a2 2 0 0 1 2 2v18l-3-2-3 2-2-2-2 2-3-2-3 2V4a2 2 0 0 1 2-2Z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
+            </span>
+            <span>
+              <h2 id="payment-proof-title">Submit payment proof</h2>
+              <p>Enter the details exactly as shown on your receipt.</p>
+            </span>
+          </div>
+
+          <form class="payment-form" data-payment-form>
+            <label>
+              <span>Transaction ID <b>*</b></span>
+              <input type="text" name="transaction_id" placeholder="Reference or transaction number" required />
+            </label>
+            <label>
+              <span>Transaction time <b>*</b></span>
+              <input type="datetime-local" name="transaction_time" required />
+            </label>
+
+            <label class="receipt-upload">
+              <span class="receipt-upload-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 14v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5"/></svg>
+              </span>
+              <strong>Upload payment receipt</strong>
+              <small data-receipt-name>PNG or JPG up to 10MB</small>
+              <input type="file" name="receipt" accept="image/png,image/jpeg" data-receipt-input required />
+            </label>
+
+            <button class="payment-submit" type="submit">Submit payment proof <span aria-hidden="true">&rarr;</span></button>
+            <output class="payment-status" data-payment-status hidden>
+              <strong>Payment proof is ready.</strong>
+              <span>Your details have been completed and are ready for verification.</span>
+            </output>
+          </form>
+        </section>
+
+        <aside class="payment-sidebar">
+          <section class="checkout-card bank-card">
+            <p class="bank-kicker">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 9 9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></svg>
+              Bank details
+            </p>
+            <p class="bank-instruction">Transfer your selected plan total to this account.</p>
+
+            <dl class="bank-details">
+              <div><dt>Bank</dt><dd>Meezan Bank</dd></div>
+              <div><dt>Account title</dt><dd>MUHAMMAD HAYAN KHAN</dd></div>
+              <div>
+                <dt>Account number</dt>
+                <dd>00300114286728</dd>
+                <button type="button" data-copy-value="00300114286728">Copy account number</button>
+              </div>
+            </dl>
+          </section>
+
+        </aside>
+      </div>
+    </main>
+
+    <script src="purchase-flow.js?v=20260809-2"></script>
+  </body>
+</html>
