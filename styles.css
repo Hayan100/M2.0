@@ -5806,6 +5806,8 @@ body.modal-open {
 .registration-new-account-fields label {
   display: grid;
   gap: 7px;
+  align-self: start;
+  align-content: start;
 }
 
 @media (max-width: 640px) {
