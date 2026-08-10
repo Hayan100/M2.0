@@ -12,18 +12,46 @@ let setRegistrationAccount = () => {};
 if (registration) {
   const form = registration.querySelector("[data-registration-form]");
   const planName = registration.querySelector("[data-registration-plan-name]");
-  const totals = registration.querySelectorAll("[data-registration-total], [data-registration-copy-total]");
+  const totals = registration.querySelectorAll("[data-registration-total], [data-registration-copy-total], [data-registration-payment-note-total]");
   const accountChoice = registration.querySelector("[data-registration-account-choice]");
+  const accountOptions = registration.querySelector("[data-registration-account-options]");
   const newAccountFields = registration.querySelector("[data-registration-new-account-fields]");
   const emailInput = form.elements.email;
   const passwordInput = form.elements.password;
+  const emailNote = registration.querySelector("[data-registration-email-note]");
   const receiptInput = registration.querySelector("[data-registration-receipt]");
   const receiptName = registration.querySelector("[data-registration-receipt-name]");
   const receiptPreview = registration.querySelector("[data-registration-receipt-preview]");
-  const status = registration.querySelector("[data-registration-status]");
   const bank = registration.querySelector("[data-registration-bank]");
   let accountEmail = "";
   let receiptPreviewUrl = "";
+  const selectMenus = [...registration.querySelectorAll("[data-registration-select]")];
+
+  const selectOption = (menu, option) => {
+    const input = menu.querySelector("[data-registration-select-input]");
+    menu.querySelector("[data-registration-select-label]").textContent = option.textContent;
+    input.value = option.dataset.value;
+    menu.open = false;
+    delete menu.dataset.invalid;
+    input.dispatchEvent(new Event("change"));
+  };
+
+  selectMenus.forEach((menu) => {
+    menu.addEventListener("toggle", () => {
+      if (menu.open) selectMenus.forEach((otherMenu) => { if (otherMenu !== menu) otherMenu.open = false; });
+    });
+    menu.addEventListener("click", (event) => {
+      const option = event.target.closest("[data-registration-select-option]");
+      if (option) selectOption(menu, option);
+    });
+  });
+
+  const checkEmailConflict = () => {
+    const knownEmails = [accountEmail, "hayan@mdcatemy.com"].filter(Boolean).map((email) => email.toLowerCase());
+    const conflict = accountChoice.value === "fresh" && knownEmails.includes(emailInput.value.trim().toLowerCase());
+    emailNote.hidden = !conflict;
+    emailInput.setCustomValidity(conflict ? "An account with this email address already exists." : "");
+  };
 
   const updateAccountFields = () => {
     const isFreshAccount = accountChoice.value === "fresh";
@@ -32,6 +60,7 @@ if (registration) {
     passwordInput.required = isFreshAccount;
     if (!isFreshAccount) emailInput.value = "";
     passwordInput.value = "";
+    checkEmailConflict();
   };
 
   updateAccountFields();
@@ -47,20 +76,26 @@ if (registration) {
   setRegistrationAccount = (account) => {
     accountEmail = account?.email || "";
     if (!accountEmail) return;
-    accountChoice.innerHTML = "";
-    accountChoice.add(new Option("Choose your account", "", true, true));
-    accountChoice.options[0].disabled = true;
-    accountChoice.add(new Option(accountEmail, "existing"));
-    accountChoice.add(new Option("Create a fresh account", "fresh"));
+    accountOptions.replaceChildren();
+    [["existing", accountEmail], ["fresh", "Create a fresh account"]].forEach(([value, label]) => {
+      const option = document.createElement("button");
+      option.type = "button";
+      option.dataset.registrationSelectOption = "";
+      option.dataset.value = value;
+      option.textContent = label;
+      accountOptions.append(option);
+    });
     updateAccountFields();
   };
 
   accountChoice.addEventListener("change", updateAccountFields);
+  emailInput.addEventListener("input", checkEmailConflict);
   receiptInput.addEventListener("change", () => {
     const receipt = receiptInput.files[0];
     receiptName.textContent = receipt?.name || "PNG or JPG up to 10MB";
     if (receiptPreviewUrl) URL.revokeObjectURL(receiptPreviewUrl);
     if (!receipt) {
+      receiptPreviewUrl = "";
       receiptPreview.hidden = true;
       receiptPreview.removeAttribute("src");
       return;
@@ -71,9 +106,11 @@ if (registration) {
   });
   registration.querySelectorAll("[data-copy-text]").forEach((button) => {
     button.addEventListener("click", async () => {
-      await navigator.clipboard?.writeText(button.dataset.copyText);
-      button.title = "Copied";
-      window.setTimeout(() => { button.title = button.getAttribute("aria-label"); }, 1400);
+      try {
+        await navigator.clipboard?.writeText(button.dataset.copyText);
+        button.title = "Copied";
+        window.setTimeout(() => { button.title = button.getAttribute("aria-label"); }, 1400);
+      } catch {}
     });
   });
 
@@ -83,7 +120,6 @@ if (registration) {
       renderPlan(button.dataset.registerPlan);
       registration.hidden = false;
       bank.open = false;
-      status.hidden = true;
       document.querySelectorAll("[data-register-plan]").forEach((item) => {
         item.setAttribute("aria-expanded", String(item === button));
       });
@@ -93,9 +129,13 @@ if (registration) {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    const missingMenu = selectMenus.find((menu) => menu.hasAttribute("data-registration-required") && !menu.querySelector("[data-registration-select-input]").value);
+    if (missingMenu) {
+      missingMenu.dataset.invalid = "";
+      missingMenu.querySelector("summary").focus();
+      return;
+    }
     if (!form.reportValidity()) return;
-    status.textContent = "Your registration details and receipt are ready for verification.";
-    status.hidden = false;
   });
 }
 

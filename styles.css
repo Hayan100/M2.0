@@ -5792,10 +5792,6 @@ body.modal-open {
   gap: 7px;
 }
 
-.registration-fields-grid > label[hidden] {
-  display: none;
-}
-
 .registration-new-account-fields {
   grid-column: 1 / -1;
   display: grid;
@@ -5828,7 +5824,6 @@ body.modal-open {
 }
 
 .registration-fields-grid input,
-.registration-fields-grid select,
 .registration-new-account-fields input,
 .registration-transaction input {
   width: 100%;
@@ -5844,23 +5839,111 @@ body.modal-open {
   transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
-.registration-fields-grid select {
-  appearance: none;
-  padding-right: 46px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23605c54' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-  background-size: 16px;
-  cursor: pointer;
-}
-
 .registration-fields-grid input:focus,
-.registration-fields-grid select:focus,
 .registration-new-account-fields input:focus,
 .registration-transaction input:focus {
   border-color: #c69a00;
   background: #fff;
   box-shadow: 0 0 0 4px rgb(255 198 0 / 15%);
+}
+
+.registration-select {
+  width: 100%;
+  position: relative;
+}
+
+.registration-select summary {
+  min-height: 52px;
+  padding: 0 15px 0 18px;
+  border: 1px solid #dcd9d0;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fcfbf8;
+  color: #171717;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  list-style: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.registration-select summary::-webkit-details-marker {
+  display: none;
+}
+
+.registration-select summary:hover,
+.registration-select summary:focus-visible,
+.registration-select[data-invalid] summary {
+  border-color: #c69a00;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgb(255 198 0 / 15%);
+}
+
+.registration-select[data-invalid] summary {
+  border-color: #d66355;
+  box-shadow: 0 0 0 4px rgb(214 99 85 / 12%);
+}
+
+.registration-select-chevron {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  stroke: #605c54;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 160ms ease;
+}
+
+.registration-select[open] .registration-select-chevron {
+  transform: rotate(180deg);
+}
+
+.registration-select-panel {
+  max-height: 242px;
+  padding: 6px;
+  border: 1px solid #e0ddd4;
+  border-radius: 14px;
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  left: 0;
+  z-index: 8;
+  overflow: auto;
+  background: #fff;
+  box-shadow: 0 14px 30px rgb(40 35 24 / 14%);
+}
+
+.registration-select-panel button {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 9px;
+  display: block;
+  background: transparent;
+  color: #292722;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+}
+
+.registration-select-panel button:hover,
+.registration-select-panel button:focus-visible {
+  background: #fff4c8;
+  color: #171717;
+}
+
+.registration-email-note {
+  margin-top: 1px;
+  color: #bd3428;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .registration-payment {
@@ -6105,22 +6188,23 @@ body.modal-open {
   cursor: pointer;
   font: inherit;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .registration-submit:hover {
   background: #ffd32a;
 }
 
-.registration-status {
-  margin-top: 12px;
-  padding: 13px 15px;
-  border: 1px solid #a9dfb6;
-  border-radius: 12px;
-  display: block;
-  background: #edf9f0;
-  color: #17622b;
+.registration-payment-note {
+  margin: 18px 0 0;
+  color: #625e55;
   font-size: 13px;
+  line-height: 1.5;
+}
+
+.registration-payment-note strong {
+  color: #171717;
+  font-weight: 700;
 }
 
 @media (max-width: 640px) {
