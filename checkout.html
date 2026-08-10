@@ -6,7 +6,7 @@
     <meta name="description" content="Complete your MDCATEMY revision plan enrollment." />
     <title>Complete Enrollment | MDCATEMY</title>
     <link rel="preload" href="assets/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="checkout.css?v=20260810-1" />
+    <link rel="stylesheet" href="checkout.css?v=20260810-2" />
   </head>
   <body>
     <header class="checkout-header">
@@ -48,10 +48,6 @@
               <input type="text" name="full_name" autocomplete="name" placeholder="e.g. Ayesha Khan" required />
             </label>
             <label>
-              <span>Student WhatsApp number <b>*</b></span>
-              <input type="tel" name="student_whatsapp" autocomplete="tel" inputmode="tel" placeholder="03XX XXXXXXX" required />
-            </label>
-            <label>
               <span>Email address <b>*</b></span>
               <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required />
             </label>
@@ -64,6 +60,60 @@
                   <svg class="password-hide-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 3 18 18M10.6 6.2A11.7 11.7 0 0 1 12 6c6.5 0 10 6 10 6s-.7 1.3-2.1 2.8M6.5 6.5C3.5 8.3 2 12 2 12s3.5 6 10 6a10.7 10.7 0 0 0 4.1-.8M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
                 </button>
               </div>
+            </label>
+            <label>
+              <span>Confirm password <b>*</b></span>
+              <input type="password" name="confirm_password" autocomplete="new-password" placeholder="Type the same password again" minlength="8" required />
+            </label>
+            <label>
+              <span>Student WhatsApp number <b>*</b></span>
+              <input type="tel" name="student_whatsapp" autocomplete="tel" inputmode="tel" placeholder="03XX XXXXXXX — for updates" required />
+            </label>
+            <label>
+              <span>Parent&apos;s WhatsApp number <b>*</b></span>
+              <input type="tel" name="parent_whatsapp" inputmode="tel" placeholder="03XX XXXXXXX — for parent updates" required />
+            </label>
+            <label>
+              <span>Gender <b>*</b></span>
+              <select name="gender" required>
+                <option value="" selected disabled>Select your gender</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+                <option value="prefer-not-to-say">Prefer not to say</option>
+              </select>
+            </label>
+            <label>
+              <span>Are you a fresher or repeater? <b>*</b></span>
+              <select name="student_type" required>
+                <option value="" selected disabled>Select your student type</option>
+                <option value="fresher">Fresher</option>
+                <option value="repeater">Repeater</option>
+              </select>
+            </label>
+            <label>
+              <span>MDCAT target score (out of 180) <b>*</b></span>
+              <input type="number" name="target_score" inputmode="numeric" min="0" max="180" placeholder="e.g. 165" required />
+            </label>
+            <label>
+              <span>Province <b>*</b></span>
+              <select name="province" required>
+                <option value="" selected disabled>Select your province</option>
+                <option>Punjab</option>
+                <option>Sindh</option>
+                <option>Khyber Pakhtunkhwa</option>
+                <option>Balochistan</option>
+                <option>Islamabad Capital Territory</option>
+                <option>Azad Jammu &amp; Kashmir</option>
+                <option>Gilgit Baltistan</option>
+              </select>
+            </label>
+            <label>
+              <span>City <b>*</b></span>
+              <input type="text" name="city" autocomplete="address-level2" placeholder="e.g. Lahore" required />
+            </label>
+            <label>
+              <span>CNIC or B-form number <b>*</b></span>
+              <input type="text" name="cnic" inputmode="numeric" pattern="[0-9]{13}" maxlength="13" placeholder="13 digits, no dashes" required />
             </label>
           </div>
         </section>
@@ -130,6 +180,6 @@
       </form>
     </main>
 
-    <script src="purchase-flow.js?v=20260810-1"></script>
+    <script src="purchase-flow.js?v=20260810-2"></script>
   </body>
 </html>

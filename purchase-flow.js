@@ -44,6 +44,7 @@ if (checkout) {
   const paymentForm = checkout.querySelector("[data-payment-form]");
   const paymentStatus = checkout.querySelector("[data-payment-status]");
   const passwordInput = checkout.querySelector("[data-password-input]");
+  const confirmPasswordInput = paymentForm.elements.confirm_password;
   const passwordToggle = checkout.querySelector("[data-password-toggle]");
 
   const renderPlan = (planKey) => {
@@ -66,6 +67,13 @@ if (checkout) {
     passwordToggle.setAttribute("aria-label", showing ? "Show password" : "Hide password");
   });
 
+  const validatePasswords = () => {
+    confirmPasswordInput.setCustomValidity(passwordInput.value === confirmPasswordInput.value ? "" : "Passwords do not match.");
+  };
+
+  passwordInput.addEventListener("input", validatePasswords);
+  confirmPasswordInput.addEventListener("input", validatePasswords);
+
   receiptInput.addEventListener("change", () => {
     receiptName.textContent = receiptInput.files[0]?.name || "PNG or JPG up to 10MB";
   });
@@ -85,6 +93,7 @@ if (checkout) {
 
   paymentForm.addEventListener("submit", (event) => {
     event.preventDefault();
+    validatePasswords();
     if (!paymentForm.reportValidity()) return;
     paymentStatus.hidden = false;
     paymentStatus.scrollIntoView({ behavior: "smooth", block: "nearest" });
