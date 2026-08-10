@@ -89,33 +89,48 @@ if (accountLink) {
   const accountName = accountMenu?.querySelector("[data-account-name]");
   const dashboardLink = accountMenu?.querySelector("[data-dashboard-link]");
   const logoutButton = accountMenu?.querySelector("[data-logout-button]");
+  let demoAccount = null;
 
-  fetch(`${accountOrigin}/api/v1/users/me`, { credentials: "include" })
-    .then((response) => response.ok ? response.json() : null)
-    .then((account) => {
-      if (account?.status !== "success") return;
-      const accountDetails = account.data?.user || account.data || account;
-      const displayName = accountDetails.name
-        || accountDetails.full_name
-        || accountDetails.fullName
-        || accountDetails.username
-        || accountDetails.email?.split("@")[0]
-        || "Student";
+  try {
+    demoAccount = JSON.parse(sessionStorage.getItem("mdcatemy-demo-account"));
+  } catch {}
 
-      accountLink.hidden = true;
-      if (accountMenu) accountMenu.hidden = false;
-      if (accountName) accountName.textContent = displayName;
-      if (dashboardLink) dashboardLink.href = `${accountOrigin}/dashboard`;
-      setRegistrationAccount(accountDetails);
-    })
-    .catch(() => {});
+  const showAccount = (accountDetails) => {
+    const displayName = accountDetails.name
+      || accountDetails.full_name
+      || accountDetails.fullName
+      || accountDetails.username
+      || accountDetails.email?.split("@")[0]
+      || "Student";
+
+    accountLink.hidden = true;
+    if (accountMenu) accountMenu.hidden = false;
+    if (accountName) accountName.textContent = displayName;
+    if (dashboardLink) dashboardLink.href = `${accountOrigin}/dashboard`;
+    setRegistrationAccount(accountDetails);
+  };
+
+  if (demoAccount?.email === "hayan@mdcatemy.com") {
+    showAccount(demoAccount);
+  } else {
+    fetch(`${accountOrigin}/api/v1/users/me`, { credentials: "include" })
+      .then((response) => response.ok ? response.json() : null)
+      .then((account) => {
+        if (account?.status !== "success") return;
+        showAccount(account.data?.user || account.data || account);
+      })
+      .catch(() => {});
+  }
 
   logoutButton?.addEventListener("click", async () => {
     logoutButton.disabled = true;
-    try {
-      await fetch(`${accountOrigin}/api/v1/users/logout`, { method: "POST", credentials: "include" });
-    } catch {
-      // The session is owned by the main app; still return the student to the login page.
+    sessionStorage.removeItem("mdcatemy-demo-account");
+    if (!demoAccount) {
+      try {
+        await fetch(`${accountOrigin}/api/v1/users/logout`, { method: "POST", credentials: "include" });
+      } catch {
+        // The session is owned by the main app; still return the student to the login page.
+      }
     }
     window.location.assign("login.html");
   });
