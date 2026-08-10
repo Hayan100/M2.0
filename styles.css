@@ -383,6 +383,12 @@ h1 > span {
   align-self: center;
 }
 
+@media (min-width: 1101px) {
+  .hero-visual {
+    transform: translateY(-20px);
+  }
+}
+
 .portrait-window {
   width: 100%;
   position: absolute;
