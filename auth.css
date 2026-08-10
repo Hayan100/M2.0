@@ -45,17 +45,19 @@ body.auth-page {
 
 .auth-doodles img {
   position: absolute;
-  width: clamp(66px, 9vw, 130px);
-  opacity: 0.17;
-  filter: sepia(1) saturate(1.7) hue-rotate(356deg);
+  width: clamp(72px, 10vw, 146px);
+  opacity: 0.14;
+  filter: sepia(1) saturate(1.35) hue-rotate(356deg);
 }
 
-.auth-doodles img:nth-child(1) { top: 7%; left: 7%; transform: rotate(-17deg); }
-.auth-doodles img:nth-child(2) { top: 10%; right: 8%; transform: rotate(16deg); }
-.auth-doodles img:nth-child(3) { top: 39%; left: 4%; transform: rotate(-19deg); }
-.auth-doodles img:nth-child(4) { top: 43%; right: 5%; transform: rotate(13deg); }
-.auth-doodles img:nth-child(5) { bottom: 9%; left: 10%; transform: rotate(-18deg); }
-.auth-doodles img:nth-child(6) { right: 12%; bottom: 7%; transform: rotate(16deg); }
+.doodle-atom { top: 7%; left: 7%; transform: rotate(-17deg); }
+.doodle-flask { top: 8%; right: 9%; transform: rotate(16deg); }
+.doodle-dna { top: 42%; left: 3%; transform: rotate(-19deg); }
+.doodle-microscope { top: 43%; right: 4%; transform: rotate(13deg); }
+.doodle-orbit { bottom: 9%; left: 9%; transform: rotate(-18deg); }
+.doodle-brain { right: 10%; bottom: 7%; transform: rotate(16deg); }
+.doodle-heart { top: 22%; left: 22%; width: clamp(48px, 6vw, 82px) !important; opacity: 0.1 !important; transform: rotate(12deg); }
+.doodle-telescope { top: 23%; right: 23%; width: clamp(52px, 6vw, 88px) !important; opacity: 0.1 !important; transform: rotate(-15deg); }
 
 .auth-glare {
   z-index: 0;
@@ -88,7 +90,7 @@ body.auth-page {
 
 .auth-tagline {
   margin: 10px 0 24px;
-  color: #846500;
+  color: var(--auth-ink);
   font-size: 10px;
   font-weight: 900;
   letter-spacing: 0.2em;
@@ -103,6 +105,7 @@ body.auth-page {
   background: rgb(255 255 255 / 92%);
   box-shadow: 0 25px 70px rgb(51 42 11 / 17%), 0 6px 18px rgb(23 23 23 / 6%);
   backdrop-filter: blur(15px);
+  text-align: center;
 }
 
 .auth-card h1 {
@@ -127,6 +130,7 @@ body.auth-page {
 .auth-field {
   display: grid;
   gap: 8px;
+  text-align: left;
 }
 
 .auth-field label {
@@ -305,6 +309,16 @@ body.auth-page {
   line-height: 1.4;
 }
 
+.registration-branding {
+  margin: 0 auto 24px;
+  display: grid;
+  justify-items: center;
+}
+
+.registration-branding .auth-tagline {
+  margin-bottom: 0;
+}
+
 @media (max-width: 560px) {
   .auth-login-shell {
     width: min(100% - 24px, 492px);
@@ -327,6 +341,11 @@ body.auth-page {
   .auth-doodles img {
     width: 69px;
     opacity: 0.12;
+  }
+
+  .doodle-heart,
+  .doodle-telescope {
+    display: none;
   }
 }
 

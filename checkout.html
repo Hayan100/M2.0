@@ -6,31 +6,22 @@
     <meta name="description" content="Complete your MDCATEMY revision plan enrollment." />
     <title>Complete Enrollment | MDCATEMY</title>
     <link rel="preload" href="assets/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="auth.css?v=20260810-2" />
-    <link rel="stylesheet" href="checkout.css?v=20260810-5" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <link rel="stylesheet" href="auth.css?v=20260810-3" />
+    <link rel="stylesheet" href="checkout.css?v=20260810-7" />
   </head>
-  <body class="auth-page registration-page">
+  <body class="auth-page registration-page antialiased">
     <div class="auth-doodles" aria-hidden="true">
-      <img src="assets/doodles/atom.webp" alt="" />
-      <img src="assets/doodles/flask-conical.webp" alt="" />
-      <img src="assets/doodles/dna.webp" alt="" />
-      <img src="assets/doodles/microscope.webp" alt="" />
-      <img src="assets/doodles/orbit.webp" alt="" />
-      <img src="assets/doodles/brain.webp" alt="" />
+      <img class="doodle-atom" src="assets/doodles/atom.webp" alt="" />
+      <img class="doodle-flask" src="assets/doodles/flask-conical.webp" alt="" />
+      <img class="doodle-dna" src="assets/doodles/dna.webp" alt="" />
+      <img class="doodle-microscope" src="assets/doodles/microscope.webp" alt="" />
+      <img class="doodle-orbit" src="assets/doodles/orbit.webp" alt="" />
+      <img class="doodle-brain" src="assets/doodles/brain.webp" alt="" />
+      <img class="doodle-heart" src="assets/doodles/heart-pulse.webp" alt="" />
+      <img class="doodle-telescope" src="assets/doodles/telescope.webp" alt="" />
     </div>
     <div class="auth-glare" aria-hidden="true"></div>
-    <header class="checkout-header">
-      <div class="checkout-branding">
-        <a class="checkout-brand" href="index.html" aria-label="MDCATEMY home">
-          <img src="assets/MDCATEMY-logo.webp" alt="MDCATEMY" />
-        </a>
-        <p>Where doctors are forged.</p>
-      </div>
-      <a class="checkout-back" href="index.html#plans">
-        <span aria-hidden="true">&larr;</span>
-        Back to plans
-      </a>
-    </header>
 
     <svg class="icon-sprite" aria-hidden="true">
       <symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
@@ -48,28 +39,53 @@
       <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
     </svg>
 
-    <main class="checkout-main" data-checkout>
-      <section class="checkout-intro">
-        <p class="checkout-kicker">Registration</p>
-        <h1>Complete your registration</h1>
-        <p>Fill in your details and submit your payment to secure your spot.</p>
-      </section>
+    <main class="checkout-main">
+      <div class="registration-branding">
+        <a class="auth-brand" href="index.html" aria-label="MDCATEMY home">
+          <img src="assets/MDCATEMY-logo.webp" alt="MDCATEMY" />
+        </a>
+        <p class="auth-tagline">Where doctors are forged.</p>
+      </div>
 
-      <section class="order-summary" aria-label="Your selected plan and total">
+      <section class="order-summary selected-plan" id="quiz-builder" aria-label="Your selected plan and total">
         <div>
           <span class="summary-label">MDCAT 2026 revision</span>
-          <p data-plan-name>All-in-One Revision Package</p>
-          <small data-plan-description>Quiz Builder + Rapid Revision Session</small>
+          <p>Quiz Builder</p>
+          <small>Build focused MCQ practice sessions your way.</small>
         </div>
         <div class="summary-total">
           <span>Total due</span>
-          <strong data-plan-total>PKR 4,000</strong>
+          <strong>PKR 2,500</strong>
+          <small>One-time payment</small>
+        </div>
+      </section>
+      <section class="order-summary selected-plan" id="rapid-revision" aria-label="Your selected plan and total">
+        <div>
+          <span class="summary-label">MDCAT 2026 revision</span>
+          <p>Science Subjects Rapid Revision Session</p>
+          <small>Alternate-day tests, live revision, and MCQ practice.</small>
+        </div>
+        <div class="summary-total">
+          <span>Total due</span>
+          <strong>PKR 3,500</strong>
+          <small>One-time payment</small>
+        </div>
+      </section>
+      <section class="order-summary selected-plan" id="all-in-one" aria-label="Your selected plan and total">
+        <div>
+          <span class="summary-label">MDCAT 2026 revision</span>
+          <p>All-in-One Revision Package</p>
+          <small>Quiz Builder + Rapid Revision Session</small>
+        </div>
+        <div class="summary-total">
+          <span>Total due</span>
+          <strong>PKR 4,000</strong>
           <small>One-time payment</small>
         </div>
       </section>
       <a class="change-plan-link" href="index.html#plans">Not the right plan? Change it</a>
 
-      <form class="payment-form" data-payment-form>
+      <form class="payment-form">
         <section class="checkout-card account-details" aria-labelledby="account-details-title">
           <div class="section-heading form-section-heading">
             <span class="section-icon" aria-hidden="true"><svg><use href="#icon-user"></use></svg></span>
@@ -98,11 +114,7 @@
               <span>Password <b>*</b></span>
               <div class="field-control password-field">
                 <svg class="field-icon" aria-hidden="true"><use href="#icon-lock"></use></svg>
-                <input type="password" name="password" autocomplete="new-password" placeholder="At least 8 characters" minlength="8" data-password-input required />
-                <button class="password-toggle" type="button" data-password-toggle aria-label="Show password" aria-pressed="false">
-                  <svg class="password-show-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
-                  <svg class="password-hide-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 3 18 18M10.6 6.2A11.7 11.7 0 0 1 12 6c6.5 0 10 6 10 6s-.7 1.3-2.1 2.8M6.5 6.5C3.5 8.3 2 12 2 12s3.5 6 10 6a10.7 10.7 0 0 0 4.1-.8M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
-                </button>
+                <input type="password" name="password" autocomplete="new-password" placeholder="At least 8 characters" minlength="8" required />
               </div>
             </label>
             <label>
@@ -198,18 +210,12 @@
             </span>
           </div>
 
-          <div class="payment-total" aria-label="Total amount to transfer">
-            <span>Total amount to transfer</span>
-            <strong data-plan-total>PKR 4,000</strong>
-            <small>One-time payment for your selected plan</small>
-          </div>
-
           <section class="bank-transfer-card" aria-labelledby="bank-transfer-title">
             <div class="bank-transfer-heading">
               <span class="bank-transfer-icon" aria-hidden="true"><svg><use href="#icon-bank"></use></svg></span>
               <span>
                 <h3 id="bank-transfer-title">Bank transfer</h3>
-                <p>Send the amount above to this Meezan Bank account.</p>
+                <p>Send the total shown in your selected plan to this Meezan Bank account.</p>
               </span>
             </div>
 
@@ -219,29 +225,20 @@
               </div>
               <div class="bank-detail-row">
                 <dt>Account title</dt><dd>MUHAMMAD HAYAN KHAN</dd>
-                <button type="button" data-copy-value="MUHAMMAD HAYAN KHAN" aria-label="Copy account title">
-                  <svg aria-hidden="true"><use href="#icon-copy"></use></svg><span data-copy-label>Copy</span>
-                </button>
               </div>
               <div class="bank-detail-row">
                 <dt>Account number</dt><dd>00300114286728</dd>
-                <button type="button" data-copy-value="00300114286728" aria-label="Copy account number">
-                  <svg aria-hidden="true"><use href="#icon-copy"></use></svg><span data-copy-label>Copy</span>
-                </button>
               </div>
               <div class="bank-detail-row bank-detail-iban">
                 <dt>IBAN</dt><dd>PK67MEZN0000300114286728</dd>
-                <button type="button" data-copy-value="PK67MEZN0000300114286728" aria-label="Copy IBAN">
-                  <svg aria-hidden="true"><use href="#icon-copy"></use></svg><span data-copy-label>Copy</span>
-                </button>
               </div>
             </dl>
 
             <label class="receipt-upload">
               <span class="receipt-upload-icon" aria-hidden="true"><svg><use href="#icon-upload"></use></svg></span>
               <strong>Upload payment receipt</strong>
-              <small data-receipt-name>PNG or JPG up to 10MB</small>
-              <input type="file" name="receipt" accept="image/png,image/jpeg" data-receipt-input required />
+              <small>PNG or JPG up to 10MB</small>
+              <input type="file" name="receipt" accept="image/png,image/jpeg" required />
             </label>
           </section>
 
@@ -257,15 +254,9 @@
 
           <p class="payment-note">Transfer the exact amount shown above. Make sure the receipt clearly shows the amount and transaction details so our team can verify your registration without delay.</p>
 
-          <button class="payment-submit" type="submit">Submit registration form <span aria-hidden="true">&rarr;</span></button>
-          <output class="payment-status" data-payment-status hidden>
-            <strong>Registration form is ready.</strong>
-            <span>Your details and payment receipt are ready for verification.</span>
-          </output>
+          <button class="payment-submit" type="button">Submit registration form <span aria-hidden="true">&rarr;</span></button>
         </section>
       </form>
     </main>
-
-    <script src="purchase-flow.js?v=20260810-3"></script>
   </body>
 </html>

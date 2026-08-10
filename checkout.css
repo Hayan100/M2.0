@@ -131,6 +131,23 @@ select {
   padding: 36px 0 72px;
 }
 
+.order-summary.selected-plan {
+  display: none;
+}
+
+.order-summary#all-in-one {
+  display: flex;
+}
+
+.order-summary.selected-plan:target {
+  display: flex;
+}
+
+.checkout-main:has(#quiz-builder:target) #all-in-one,
+.checkout-main:has(#rapid-revision:target) #all-in-one {
+  display: none;
+}
+
 .checkout-intro {
   max-width: 720px;
   margin: 0 auto 20px;
