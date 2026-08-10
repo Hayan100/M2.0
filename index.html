@@ -918,111 +918,6 @@
       </section>
     </main>
 
-    <dialog class="auth-dialog" data-auth-dialog aria-labelledby="auth-title">
-      <div class="auth-dialog-shell">
-        <button class="auth-dialog-close" type="button" data-close-auth aria-label="Close account window">&times;</button>
-
-        <div class="auth-brand" aria-hidden="true">
-          <img src="assets/MDCATEMY-logo.webp" alt="" />
-        </div>
-
-        <section class="auth-panel" data-auth-panel="login">
-          <h2 id="auth-title">Welcome back, warrior</h2>
-          <p class="auth-intro">Log in to your account first to buy a package.</p>
-
-          <form class="auth-form" data-login-form>
-            <label>
-              <span>Email address</span>
-              <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required />
-            </label>
-            <label>
-              <span>Password</span>
-              <input type="password" name="password" autocomplete="current-password" placeholder="Enter your password" minlength="8" required />
-            </label>
-            <button class="auth-submit" type="submit">Login &amp; continue <span aria-hidden="true">&rarr;</span></button>
-          </form>
-
-          <p class="auth-switch">Don&apos;t have an account? <button type="button" data-show-signup>Create account</button></p>
-        </section>
-
-        <section class="auth-panel auth-panel-signup" data-auth-panel="signup" hidden>
-          <h2>Create your account</h2>
-
-          <form class="auth-form" data-signup-form>
-            <label>
-              <span>Full name</span>
-              <input type="text" name="full_name" autocomplete="name" placeholder="e.g. Ayesha Khan" required />
-            </label>
-            <label>
-              <span>Email address</span>
-              <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required />
-            </label>
-            <label>
-              <span>Password</span>
-              <input type="password" name="password" autocomplete="new-password" placeholder="At least 8 characters" minlength="8" required />
-            </label>
-            <label>
-              <span>Confirm password</span>
-              <input type="password" name="confirm_password" autocomplete="new-password" placeholder="Type the same password again" minlength="8" required />
-            </label>
-            <label>
-              <span>Student WhatsApp number</span>
-              <input type="tel" name="student_whatsapp" autocomplete="tel" inputmode="tel" placeholder="03XX XXXXXXX — for updates" required />
-            </label>
-            <label>
-              <span>Parent&apos;s WhatsApp number</span>
-              <input type="tel" name="parent_whatsapp" inputmode="tel" placeholder="03XX XXXXXXX — for parent updates" required />
-            </label>
-            <label>
-              <span>Gender</span>
-              <select name="gender" required>
-                <option value="" selected disabled>Select your gender</option>
-                <option value="female">Female</option>
-                <option value="male">Male</option>
-                <option value="prefer-not-to-say">Prefer not to say</option>
-              </select>
-            </label>
-            <label>
-              <span>Are you a fresher or repeater?</span>
-              <select name="student_type" required>
-                <option value="" selected disabled>Select your student type</option>
-                <option value="fresher">Fresher</option>
-                <option value="repeater">Repeater</option>
-              </select>
-            </label>
-            <label>
-              <span>MDCAT target score (out of 180)</span>
-              <input type="number" name="target_score" inputmode="numeric" min="0" max="180" placeholder="e.g. 165" required />
-            </label>
-            <label>
-              <span>Province</span>
-              <select name="province" required>
-                <option value="" selected disabled>Select your province</option>
-                <option>Punjab</option>
-                <option>Sindh</option>
-                <option>Khyber Pakhtunkhwa</option>
-                <option>Balochistan</option>
-                <option>Islamabad Capital Territory</option>
-                <option>Azad Jammu &amp; Kashmir</option>
-                <option>Gilgit-Baltistan</option>
-              </select>
-            </label>
-            <label>
-              <span>City</span>
-              <input type="text" name="city" autocomplete="address-level2" placeholder="e.g. Lahore" required />
-            </label>
-            <label>
-              <span>CNIC or B-form number</span>
-              <input type="text" name="cnic" inputmode="numeric" pattern="[0-9]{13}" maxlength="13" placeholder="13 digits, no dashes" required />
-            </label>
-            <button class="auth-submit" type="submit">Create account <span aria-hidden="true">&rarr;</span></button>
-          </form>
-
-          <p class="auth-switch">Already have an account? <button type="button" data-show-login>Log in</button></p>
-        </section>
-      </div>
-    </dialog>
-
     <details class="help-widget">
       <summary>
         <svg class="help-widget-chat" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -1071,6 +966,6 @@
     </details>
 
     <script src="script.js?v=20260809-3"></script>
-    <script src="purchase-flow.js?v=20260809-2"></script>
+    <script src="purchase-flow.js?v=20260810-1"></script>
   </body>
 </html>

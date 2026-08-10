@@ -33,74 +33,9 @@ const savePlan = (planKey) => {
   sessionStorage.setItem(PLAN_STORAGE_KEY, planKey);
 };
 
-const checkoutUrl = () => `checkout.html?plan=${encodeURIComponent(selectedPlanKey)}`;
-
-const authDialog = document.querySelector("[data-auth-dialog]");
-
-if (authDialog) {
-  const panels = [...authDialog.querySelectorAll("[data-auth-panel]")];
-  const closeButton = authDialog.querySelector("[data-close-auth]");
-  const loginForm = authDialog.querySelector("[data-login-form]");
-  const signupForm = authDialog.querySelector("[data-signup-form]");
-  let opener;
-
-  const showPanel = (panelName) => {
-    panels.forEach((panel) => { panel.hidden = panel.dataset.authPanel !== panelName; });
-    authDialog.scrollTo(0, 0);
-    const firstField = authDialog.querySelector(`[data-auth-panel="${panelName}"] input`);
-    window.setTimeout(() => firstField?.focus(), 0);
-  };
-
-  const openAuth = (trigger, planKey) => {
-    opener = trigger;
-    savePlan(planKey);
-    showPanel("login");
-    authDialog.showModal();
-    document.body.classList.add("modal-open");
-  };
-
-  document.querySelectorAll("[data-purchase-plan]").forEach((trigger) => {
-    trigger.addEventListener("click", (event) => {
-      event.preventDefault();
-      openAuth(trigger, trigger.dataset.purchasePlan);
-    });
-  });
-
-  authDialog.querySelector("[data-show-signup]").addEventListener("click", () => showPanel("signup"));
-  authDialog.querySelector("[data-show-login]").addEventListener("click", () => showPanel("login"));
-  closeButton.addEventListener("click", () => authDialog.close());
-  authDialog.addEventListener("click", (event) => {
-    if (event.target === authDialog) authDialog.close();
-  });
-  authDialog.addEventListener("close", () => {
-    document.body.classList.remove("modal-open");
-    opener?.focus();
-  });
-
-  loginForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    if (loginForm.reportValidity()) window.location.href = checkoutUrl();
-  });
-
-  const password = signupForm.elements.password;
-  const confirmPassword = signupForm.elements.confirm_password;
-  const validatePasswords = () => {
-    confirmPassword.setCustomValidity(password.value === confirmPassword.value ? "" : "Passwords do not match.");
-  };
-
-  password.addEventListener("input", validatePasswords);
-  confirmPassword.addEventListener("input", validatePasswords);
-  signupForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    validatePasswords();
-    if (signupForm.reportValidity()) window.location.href = checkoutUrl();
-  });
-}
-
 const checkout = document.querySelector("[data-checkout]");
 
 if (checkout) {
-  const planInputs = [...checkout.querySelectorAll("[data-checkout-plan]")];
   const total = checkout.querySelector("[data-plan-total]");
   const selectedName = checkout.querySelector("[data-plan-name]");
   const selectedDescription = checkout.querySelector("[data-plan-description]");
@@ -108,15 +43,12 @@ if (checkout) {
   const receiptName = checkout.querySelector("[data-receipt-name]");
   const paymentForm = checkout.querySelector("[data-payment-form]");
   const paymentStatus = checkout.querySelector("[data-payment-status]");
+  const passwordInput = checkout.querySelector("[data-password-input]");
+  const passwordToggle = checkout.querySelector("[data-password-toggle]");
 
   const renderPlan = (planKey) => {
     savePlan(planKey);
     const plan = PURCHASE_PLANS[planKey];
-    planInputs.forEach((input) => {
-      const selected = input.value === planKey;
-      input.checked = selected;
-      input.closest(".checkout-plan-card").classList.toggle("is-selected", selected);
-    });
     total.textContent = formatPrice(plan.price);
     selectedName.textContent = plan.name;
     selectedDescription.textContent = plan.shortName;
@@ -125,8 +57,14 @@ if (checkout) {
     window.history.replaceState({}, "", nextUrl);
   };
 
-  planInputs.forEach((input) => input.addEventListener("change", () => renderPlan(input.value)));
   renderPlan(selectedPlanKey);
+
+  passwordToggle.addEventListener("click", () => {
+    const showing = passwordInput.type === "text";
+    passwordInput.type = showing ? "password" : "text";
+    passwordToggle.setAttribute("aria-pressed", String(!showing));
+    passwordToggle.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+  });
 
   receiptInput.addEventListener("change", () => {
     receiptName.textContent = receiptInput.files[0]?.name || "PNG or JPG up to 10MB";
