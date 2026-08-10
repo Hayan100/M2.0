@@ -383,12 +383,6 @@ h1 > span {
   align-self: center;
 }
 
-@media (min-width: 1101px) {
-  .hero-visual {
-    transform: translateY(36px);
-  }
-}
-
 .portrait-window {
   width: 100%;
   position: absolute;
@@ -540,7 +534,7 @@ h1 > span {
 .proof-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-  align-items: stretch;
+  align-items: start;
   gap: clamp(28px, 3.2vw, 42px);
 }
 
