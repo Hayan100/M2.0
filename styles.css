@@ -5948,6 +5948,12 @@ body.modal-open {
   line-height: 1.4;
 }
 
+.registration-new-account-fields label.has-error input {
+  border-color: #bd3428;
+  background: #fff7f5;
+  box-shadow: 0 0 0 4px rgb(189 52 40 / 10%);
+}
+
 .registration-payment {
   margin-top: 24px;
 }

@@ -17,6 +17,7 @@ if (registration) {
   const accountOptions = registration.querySelector("[data-registration-account-options]");
   const newAccountFields = registration.querySelector("[data-registration-new-account-fields]");
   const emailInput = form.elements.email;
+  const emailField = emailInput.closest("label");
   const passwordInput = form.elements.password;
   const emailNote = registration.querySelector("[data-registration-email-note]");
   const receiptInput = registration.querySelector("[data-registration-receipt]");
@@ -50,6 +51,7 @@ if (registration) {
     const knownEmails = [accountEmail, "hayan@mdcatemy.com"].filter(Boolean).map((email) => email.toLowerCase());
     const conflict = accountChoice.value === "fresh" && knownEmails.includes(emailInput.value.trim().toLowerCase());
     emailNote.hidden = !conflict;
+    emailField.classList.toggle("has-error", conflict);
     emailInput.setCustomValidity(conflict ? "An account with this email address already exists." : "");
   };
 
