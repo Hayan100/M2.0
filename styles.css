@@ -162,6 +162,106 @@ body {
   display: none;
 }
 
+.user-account-menu {
+  position: relative;
+}
+
+.user-account-menu[hidden] {
+  display: none;
+}
+
+.user-account-menu summary {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 2px solid #ffc600;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffc600;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  list-style: none;
+}
+
+.user-account-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.user-account-menu summary:hover,
+.user-account-menu summary:focus-visible {
+  background: #ffc600;
+  color: #171717;
+}
+
+.user-account-menu svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.user-account-menu .user-account-chevron {
+  width: 15px;
+  height: 15px;
+  margin-left: 1px;
+  transition: transform 160ms ease;
+}
+
+.user-account-menu[open] .user-account-chevron {
+  transform: rotate(180deg);
+}
+
+.user-account-dropdown {
+  width: 178px;
+  padding: 6px;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 20;
+  border: 1px solid rgb(255 198 0 / 42%);
+  border-radius: 10px;
+  background: #171717;
+  box-shadow: 0 14px 28px rgb(0 0 0 / 24%);
+}
+
+.user-account-dropdown a,
+.user-account-dropdown button {
+  width: 100%;
+  min-height: 38px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: none;
+}
+
+.user-account-dropdown a:hover,
+.user-account-dropdown a:focus-visible,
+.user-account-dropdown button:hover,
+.user-account-dropdown button:focus-visible {
+  background: rgb(255 198 0 / 16%);
+  color: #ffc600;
+}
+
+.user-account-dropdown svg {
+  width: 16px;
+  height: 16px;
+}
+
 .site-menu {
   display: none;
   position: relative;
@@ -5623,6 +5723,340 @@ body.modal-open {
   color: #48443e;
   font-size: 13px;
   text-align: center;
+}
+
+.registration-embed {
+  width: min(100%, 920px);
+  margin: 34px auto 0;
+  position: relative;
+  z-index: 1;
+  scroll-margin-top: 82px;
+}
+
+.registration-embed-heading {
+  max-width: 700px;
+  margin: 0 auto 18px;
+  text-align: center;
+}
+
+.registration-embed-heading p {
+  margin: 0 0 6px;
+  color: #8d6b00;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.registration-embed-heading h2 {
+  margin: 0;
+  color: #171717;
+  font-size: clamp(29px, 3vw, 40px);
+  letter-spacing: -0.05em;
+  line-height: 1.04;
+}
+
+.registration-embed-heading > span {
+  margin-top: 10px;
+  display: block;
+  color: #5d5a53;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.registration-embed-heading b {
+  color: #171717;
+}
+
+.registration-embed-card {
+  padding: clamp(22px, 4vw, 38px);
+  border: 1px solid #e1e0da;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 20px 52px rgb(34 31 22 / 10%);
+}
+
+.registration-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px 18px;
+}
+
+.registration-fields-grid > label,
+.registration-transaction {
+  display: grid;
+  gap: 7px;
+}
+
+.registration-fields-grid > label > span,
+.registration-transaction > span {
+  color: #4c4a44;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.registration-fields-grid input,
+.registration-fields-grid select,
+.registration-transaction input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 15px;
+  border: 1px solid #dcd9d0;
+  border-radius: 11px;
+  outline: none;
+  background: #fcfbf8;
+  color: #171717;
+  font: inherit;
+  font-size: 14px;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.registration-fields-grid select {
+  appearance: auto;
+}
+
+.registration-fields-grid input:focus,
+.registration-fields-grid select:focus,
+.registration-transaction input:focus {
+  border-color: #c69a00;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgb(255 198 0 / 15%);
+}
+
+.registration-payment {
+  margin-top: 24px;
+}
+
+.registration-total-card {
+  padding: 18px 20px;
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  background: #f4f3ef;
+}
+
+.registration-total-card span,
+.registration-total-card strong {
+  display: block;
+}
+
+.registration-total-card span {
+  color: #6d6960;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.registration-total-card strong {
+  margin-top: 5px;
+  color: #171717;
+  font-size: 16px;
+}
+
+.registration-total-card > div:last-child {
+  text-align: right;
+}
+
+.registration-total-card > div:last-child strong {
+  color: #9a7400;
+  font-size: 24px;
+  letter-spacing: -0.04em;
+}
+
+.registration-bank {
+  margin-top: 12px;
+  border: 1px solid #dcd9d0;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.registration-bank summary {
+  min-height: 72px;
+  padding: 14px 17px;
+  display: grid;
+  grid-template-columns: 20px 1fr auto;
+  align-items: center;
+  gap: 11px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.registration-bank summary::-webkit-details-marker {
+  display: none;
+}
+
+.registration-bank-dot {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #bdb9af;
+  border-radius: 50%;
+  position: relative;
+}
+
+.registration-bank[open] .registration-bank-dot {
+  border-color: #2bb89a;
+}
+
+.registration-bank[open] .registration-bank-dot::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  inset: 2.5px;
+  background: #2bb89a;
+}
+
+.registration-bank summary strong,
+.registration-bank summary small {
+  display: block;
+}
+
+.registration-bank summary strong {
+  color: #171717;
+  font-size: 14px;
+}
+
+.registration-bank summary small {
+  margin-top: 3px;
+  color: #77736b;
+  font-size: 11px;
+}
+
+.registration-bank-chevron {
+  color: #605c54;
+  font-size: 26px;
+  line-height: 1;
+  transition: transform 160ms ease;
+}
+
+.registration-bank[open] .registration-bank-chevron {
+  transform: rotate(90deg);
+}
+
+.registration-bank-body {
+  padding: 4px 17px 18px;
+}
+
+.registration-bank-body dl {
+  margin: 0;
+}
+
+.registration-bank-body dl > div {
+  padding: 11px 0;
+  border-top: 1px dashed #ddd9cf;
+}
+
+.registration-bank-body dt {
+  color: #77736b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.registration-bank-body dd {
+  margin: 4px 0 0;
+  color: #171717;
+  font-size: 13px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.registration-receipt {
+  min-height: 108px;
+  margin-top: 8px;
+  border: 1.5px dashed #caa129;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 5px;
+  background: #fffaf0;
+  color: #171717;
+  cursor: pointer;
+  text-align: center;
+}
+
+.registration-receipt > span {
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.registration-receipt > small {
+  color: #716d63;
+  font-size: 11px;
+}
+
+.registration-receipt input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.registration-transaction {
+  margin-top: 14px;
+}
+
+.registration-submit {
+  width: 100%;
+  min-height: 54px;
+  margin-top: 22px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--yellow);
+  color: #171717;
+  box-shadow: 0 12px 28px rgb(255 198 0 / 22%);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.registration-submit:hover {
+  background: #ffd32a;
+}
+
+.registration-status {
+  margin-top: 12px;
+  padding: 13px 15px;
+  border: 1px solid #a9dfb6;
+  border-radius: 12px;
+  display: block;
+  background: #edf9f0;
+  color: #17622b;
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .registration-fields-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .registration-total-card {
+    grid-template-columns: 1fr;
+  }
+
+  .registration-total-card > div:last-child {
+    text-align: left;
+  }
+
+  .registration-embed-card {
+    padding: 21px 16px;
+    border-radius: 19px;
+  }
+
+  .registration-bank summary {
+    padding-inline: 14px;
+  }
+
+  .registration-bank-body {
+    padding-inline: 14px;
+  }
 }
 
 @media (max-width: 1100px) {

@@ -1,23 +1,127 @@
 const carousel = document.querySelector("[data-carousel]");
 
+const registration = document.querySelector("[data-registration]");
+const registrationPlans = Object.freeze({
+  "quiz-builder": { name: "Quiz Builder", price: 2500 },
+  "rapid-revision": { name: "Science Subjects Rapid Revision Session", price: 3500 },
+  "all-in-one": { name: "All-in-One Revision Package", price: 4000 },
+});
+const formatRegistrationPrice = (price) => `Rs ${price.toLocaleString("en-PK")}/-`;
+let setRegistrationAccount = () => {};
+
+if (registration) {
+  const form = registration.querySelector("[data-registration-form]");
+  const planName = registration.querySelector("[data-registration-plan-name]");
+  const totals = registration.querySelectorAll("[data-registration-total], [data-registration-copy-total]");
+  const accountSelectWrap = registration.querySelector("[data-registration-account-select]");
+  const accountChoice = registration.querySelector("[data-registration-account-choice]");
+  const emailField = registration.querySelector("[data-registration-email-field]");
+  const passwordField = registration.querySelector("[data-registration-password-field]");
+  const emailInput = form.elements.email;
+  const passwordInput = form.elements.password;
+  const receiptInput = registration.querySelector("[data-registration-receipt]");
+  const receiptName = registration.querySelector("[data-registration-receipt-name]");
+  const status = registration.querySelector("[data-registration-status]");
+  const bank = registration.querySelector("[data-registration-bank]");
+  let accountEmail = "";
+
+  const setFreshAccount = (fresh) => {
+    emailField.hidden = !fresh;
+    passwordField.hidden = !fresh;
+    emailInput.required = fresh || !accountEmail;
+    passwordInput.required = fresh || !accountEmail;
+    if (!fresh) {
+      emailInput.value = accountEmail;
+      passwordInput.value = "";
+    }
+  };
+
+  const renderPlan = (key) => {
+    const plan = registrationPlans[key];
+    if (!plan) return;
+    registration.dataset.selectedPlan = key;
+    planName.textContent = plan.name;
+    totals.forEach((total) => { total.textContent = formatRegistrationPrice(plan.price); });
+  };
+
+  setRegistrationAccount = (account) => {
+    accountEmail = account?.email || "";
+    if (!accountEmail) return;
+    accountSelectWrap.hidden = false;
+    accountChoice.innerHTML = "";
+    const currentAccount = new Option(accountEmail, "current");
+    const freshAccount = new Option("Create a fresh account for me", "fresh");
+    accountChoice.add(currentAccount, undefined);
+    accountChoice.add(freshAccount, undefined);
+    accountChoice.value = "current";
+    setFreshAccount(false);
+  };
+
+  accountChoice.addEventListener("change", () => setFreshAccount(accountChoice.value === "fresh"));
+  receiptInput.addEventListener("change", () => {
+    receiptName.textContent = receiptInput.files[0]?.name || "PNG or JPG up to 10MB";
+  });
+
+  document.querySelectorAll("[data-register-plan]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      renderPlan(button.dataset.registerPlan);
+      registration.hidden = false;
+      bank.open = false;
+      status.hidden = true;
+      document.querySelectorAll("[data-register-plan]").forEach((item) => {
+        item.setAttribute("aria-expanded", String(item === button));
+      });
+      window.requestAnimationFrame(() => registration.scrollIntoView({ behavior: "smooth", block: "start" }));
+    });
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    status.textContent = "Your registration details and receipt are ready for verification.";
+    status.hidden = false;
+  });
+}
+
 const accountLink = document.querySelector("[data-account-link]");
+const accountMenu = document.querySelector("[data-user-menu]");
 
 if (accountLink) {
   const accountOrigin = "https://mdcatemy.com";
-  const accountLabel = accountLink.querySelector("[data-account-label]");
-  const loginIcon = accountLink.querySelector('[data-account-icon="login"]');
-  const dashboardIcon = accountLink.querySelector('[data-account-icon="dashboard"]');
+  const accountName = accountMenu?.querySelector("[data-account-name]");
+  const dashboardLink = accountMenu?.querySelector("[data-dashboard-link]");
+  const logoutButton = accountMenu?.querySelector("[data-logout-button]");
 
   fetch(`${accountOrigin}/api/v1/users/me`, { credentials: "include" })
     .then((response) => response.ok ? response.json() : null)
     .then((account) => {
       if (account?.status !== "success") return;
-      accountLink.href = `${accountOrigin}/dashboard`;
-      accountLabel.textContent = "Dashboard";
-      loginIcon.hidden = true;
-      dashboardIcon.hidden = false;
+      const accountDetails = account.data?.user || account.data || account;
+      const displayName = accountDetails.name
+        || accountDetails.full_name
+        || accountDetails.fullName
+        || accountDetails.username
+        || accountDetails.email?.split("@")[0]
+        || "Student";
+
+      accountLink.hidden = true;
+      if (accountMenu) accountMenu.hidden = false;
+      if (accountName) accountName.textContent = displayName;
+      if (dashboardLink) dashboardLink.href = `${accountOrigin}/dashboard`;
+      setRegistrationAccount(accountDetails);
     })
     .catch(() => {});
+
+  logoutButton?.addEventListener("click", async () => {
+    logoutButton.disabled = true;
+    try {
+      await fetch(`${accountOrigin}/api/v1/users/logout`, { method: "POST", credentials: "include" });
+    } catch {
+      // The session is owned by the main app; still return the student to the login page.
+    }
+    window.location.assign("login.html");
+  });
 }
 
 if (carousel) {
