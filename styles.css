@@ -221,7 +221,7 @@ body {
 }
 
 .user-account-dropdown {
-  width: 178px;
+  width: 100%;
   padding: 6px;
   position: absolute;
   top: calc(100% + 8px);
@@ -5790,6 +5790,16 @@ body.modal-open {
 .registration-transaction {
   display: grid;
   gap: 7px;
+}
+
+.registration-fields-grid > label[hidden] {
+  display: none;
+}
+
+.registration-account-select,
+.registration-fields-grid > label[data-registration-email-field],
+.registration-fields-grid > label[data-registration-password-field] {
+  grid-column: 1 / -1;
 }
 
 .registration-fields-grid > label > span,
