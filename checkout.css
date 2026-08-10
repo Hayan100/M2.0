@@ -37,6 +37,14 @@ body {
   color: var(--ink);
 }
 
+body.auth-page.registration-page {
+  background:
+    radial-gradient(circle at 50% 40%, rgb(255 198 0 / 15%), transparent 22rem),
+    radial-gradient(circle at 13% 10%, rgb(255 198 0 / 11%), transparent 26rem),
+    radial-gradient(circle at 90% 82%, rgb(255 211 50 / 12%), transparent 28rem),
+    #fbfaf6;
+}
+
 .icon-sprite {
   position: absolute;
   width: 0;
@@ -63,6 +71,21 @@ select {
   background: rgb(255 255 255 / 88%);
   box-shadow: 0 8px 32px rgb(23 23 23 / 4%);
   backdrop-filter: blur(16px);
+}
+
+.checkout-branding {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.checkout-branding p {
+  margin: 0;
+  color: #846500;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .checkout-brand {
@@ -101,6 +124,8 @@ select {
 }
 
 .checkout-main {
+  position: relative;
+  z-index: 1;
   width: min(820px, calc(100% - 36px));
   margin: 0 auto;
   padding: 36px 0 72px;
@@ -138,9 +163,10 @@ select {
 
 .checkout-card {
   border: 1px solid rgb(23 23 23 / 7%);
-  border-radius: 19px;
-  background: var(--paper);
-  box-shadow: 0 14px 40px rgb(35 33 24 / 6%);
+  border-radius: 22px;
+  background: rgb(255 255 255 / 93%);
+  box-shadow: 0 22px 62px rgb(51 42 11 / 14%), 0 5px 16px rgb(23 23 23 / 5%);
+  backdrop-filter: blur(14px);
 }
 
 .plan-picker {
@@ -670,6 +696,16 @@ select {
     width: 126px;
   }
 
+  .checkout-branding {
+    gap: 8px;
+  }
+
+  .checkout-branding p {
+    max-width: 83px;
+    font-size: 8px;
+    line-height: 1.35;
+  }
+
   .checkout-back {
     min-height: 38px;
     padding-inline: 13px;
@@ -738,6 +774,12 @@ select {
 
   .receipt-upload {
     min-height: 120px;
+  }
+}
+
+@media (max-width: 420px) {
+  .checkout-branding p {
+    display: none;
   }
 }
 
