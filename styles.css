@@ -317,7 +317,7 @@ h1 > span {
 }
 
 .social-proof {
-  padding: clamp(84px, 8vw, 124px) clamp(20px, 5vw, 80px);
+  padding: clamp(64px, 6vw, 82px) clamp(20px, 5vw, 80px);
   overflow: hidden;
   position: relative;
   background:
@@ -333,7 +333,7 @@ h1 > span {
 
 .proof-heading {
   max-width: 820px;
-  margin: 0 auto clamp(48px, 6vw, 70px);
+  margin: 0 auto clamp(36px, 4vw, 42px);
   text-align: center;
 }
 
@@ -354,7 +354,7 @@ h1 > span {
 .proof-heading h2 {
   margin: 0;
   color: var(--ink);
-  font-size: clamp(38px, 4.2vw, 62px);
+  font-size: clamp(38px, 3.6vw, 52px);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1.02;
@@ -362,28 +362,31 @@ h1 > span {
 
 .proof-heading > span {
   display: block;
-  margin-top: 18px;
+  margin-top: 14px;
   color: var(--muted);
-  font-size: clamp(16px, 1.4vw, 19px);
+  font-size: clamp(16px, 1.25vw, 18px);
   line-height: 1.5;
 }
 
 .proof-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-  align-items: start;
-  gap: clamp(30px, 4vw, 52px);
+  align-items: stretch;
+  gap: clamp(28px, 3.2vw, 42px);
 }
 
-.result-stage {
+.result-stage,
+.testimonial-stage {
   min-width: 0;
   position: relative;
   isolation: isolate;
+  display: flex;
 }
 
 .result-spotlight {
-  min-height: 520px;
-  padding: clamp(28px, 3vw, 38px);
+  width: 100%;
+  min-height: 500px;
+  padding: clamp(26px, 2.5vw, 32px);
   border-radius: 30px;
   overflow: hidden;
   position: relative;
@@ -430,22 +433,31 @@ h1 > span {
 }
 
 .result-student {
-  margin-top: 32px;
+  margin-top: 24px;
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.result-student img {
-  width: 76px;
-  height: 76px;
-  padding: 2px;
+.result-avatar {
+  width: 68px;
+  height: 68px;
   border: 3px solid var(--yellow);
   border-radius: 50%;
+  overflow: hidden;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  background: #4f7dbf;
+  box-sizing: border-box;
+}
+
+.result-avatar img {
+  width: 100%;
+  height: 100%;
   display: block;
   object-fit: cover;
-  background: #5384c4;
-  box-sizing: border-box;
+  background: #4f7dbf;
 }
 
 .result-student h3,
@@ -466,8 +478,8 @@ h1 > span {
 }
 
 .result-score {
-  margin: 30px 0 26px;
-  padding: 24px 0;
+  margin: 22px 0 20px;
+  padding: 18px 0;
   border-block: 1px solid rgb(255 255 255 / 10%);
   display: flex;
   align-items: flex-end;
@@ -477,7 +489,7 @@ h1 > span {
 
 .result-score > strong {
   color: var(--yellow);
-  font-size: clamp(56px, 6vw, 76px);
+  font-size: clamp(52px, 5vw, 64px);
   font-weight: 800;
   letter-spacing: -0.07em;
   line-height: 0.84;
@@ -523,11 +535,11 @@ h1 > span {
 }
 
 .result-copy blockquote {
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
 }
 
 .testimonial-copy blockquote {
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 5;
 }
 
 .collapsible-copy.is-expanded blockquote {
@@ -554,12 +566,6 @@ h1 > span {
   color: var(--yellow-bright);
 }
 
-.testimonial-stage {
-  min-width: 0;
-  position: relative;
-  isolation: isolate;
-}
-
 .testimonial-stage::before {
   content: "";
   position: absolute;
@@ -584,8 +590,9 @@ h1 > span {
 }
 
 .testimonial-card {
-  min-height: 520px;
-  padding: clamp(30px, 3.4vw, 42px);
+  width: 100%;
+  min-height: 500px;
+  padding: clamp(26px, 2.6vw, 32px);
   border-radius: 30px;
   overflow: hidden;
   position: relative;
@@ -639,7 +646,7 @@ h1 > span {
 
 .testimonial-slides {
   flex: 1;
-  margin-top: 32px;
+  margin-top: 22px;
   display: grid;
 }
 
@@ -672,22 +679,22 @@ h1 > span {
   margin: 0;
   position: relative;
   color: #242424;
-  font-size: clamp(18px, 1.7vw, 22px);
-  line-height: 1.55;
+  font-size: clamp(18px, 1.5vw, 20px);
+  line-height: 1.48;
 }
 
 .testimonial-slide blockquote::before {
   content: "“";
   display: block;
-  height: 40px;
+  height: 32px;
   color: rgb(255 198 0 / 36%);
   font-family: Georgia, serif;
-  font-size: 72px;
+  font-size: 62px;
   line-height: 0.8;
 }
 
 .testimonial-student {
-  margin-top: 34px;
+  margin-top: 24px;
   display: grid;
   grid-template-columns: 64px minmax(0, auto) minmax(0, 1fr);
   align-items: center;
@@ -740,8 +747,8 @@ h1 > span {
 }
 
 .testimonial-controls {
-  margin-top: 28px;
-  padding-top: 22px;
+  margin-top: 20px;
+  padding-top: 16px;
   border-top: 1px solid rgb(23 23 23 / 7%);
   display: flex;
   align-items: center;
