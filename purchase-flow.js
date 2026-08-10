@@ -36,7 +36,7 @@ const savePlan = (planKey) => {
 const checkout = document.querySelector("[data-checkout]");
 
 if (checkout) {
-  const total = checkout.querySelector("[data-plan-total]");
+  const totals = [...checkout.querySelectorAll("[data-plan-total]")];
   const selectedName = checkout.querySelector("[data-plan-name]");
   const selectedDescription = checkout.querySelector("[data-plan-description]");
   const receiptInput = checkout.querySelector("[data-receipt-input]");
@@ -50,7 +50,7 @@ if (checkout) {
   const renderPlan = (planKey) => {
     savePlan(planKey);
     const plan = PURCHASE_PLANS[planKey];
-    total.textContent = formatPrice(plan.price);
+    totals.forEach((total) => { total.textContent = formatPrice(plan.price); });
     selectedName.textContent = plan.name;
     selectedDescription.textContent = plan.shortName;
     const nextUrl = new URL(window.location.href);
@@ -80,13 +80,13 @@ if (checkout) {
 
   checkout.querySelectorAll("[data-copy-value]").forEach((button) => {
     button.addEventListener("click", async () => {
+      const label = button.querySelector("[data-copy-label]");
       try {
         await navigator.clipboard.writeText(button.dataset.copyValue);
-        const original = button.textContent;
-        button.textContent = "Copied";
-        window.setTimeout(() => { button.textContent = original; }, 1400);
+        label.textContent = "Copied";
+        window.setTimeout(() => { label.textContent = "Copy"; }, 1400);
       } catch {
-        button.textContent = "Select and copy the number above";
+        label.textContent = "Copy manually";
       }
     });
   });

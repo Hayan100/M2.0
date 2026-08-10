@@ -6,7 +6,7 @@
     <meta name="description" content="Complete your MDCATEMY revision plan enrollment." />
     <title>Complete Enrollment | MDCATEMY</title>
     <link rel="preload" href="assets/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="checkout.css?v=20260810-2" />
+    <link rel="stylesheet" href="checkout.css?v=20260810-3" />
   </head>
   <body>
     <header class="checkout-header">
@@ -18,6 +18,22 @@
         Back to plans
       </a>
     </header>
+
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+      <symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+      <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 1.9Z"/></symbol>
+      <symbol id="icon-graduate" viewBox="0 0 24 24"><path d="m2 10 10-5 10 5-10 5-10-5Z"/><path d="M6 12.5V17c3 2.7 9 2.7 12 0v-4.5M22 10v6"/></symbol>
+      <symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+      <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+      <symbol id="icon-city" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4v18M12 9h7v12M8 9h1M8 13h1M8 17h1M15 12h1M15 16h1"/></symbol>
+      <symbol id="icon-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M5.5 16a3 3 0 0 1 5 0M13 10h5M13 14h5"/></symbol>
+      <symbol id="icon-bank" viewBox="0 0 24 24"><path d="m3 9 9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></symbol>
+      <symbol id="icon-receipt" viewBox="0 0 24 24"><path d="M6 2h12a2 2 0 0 1 2 2v18l-3-2-3 2-2-2-2 2-3-2-3 2V4a2 2 0 0 1 2-2ZM8 7h8M8 11h8M8 15h5"/></symbol>
+      <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M5 14v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5"/></symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+    </svg>
 
     <main class="checkout-main" data-checkout>
       <section class="checkout-intro">
@@ -41,19 +57,34 @@
       <a class="change-plan-link" href="index.html#plans">Not the right plan? Change it</a>
 
       <form class="payment-form" data-payment-form>
-        <section class="checkout-card account-details" aria-label="Account details">
+        <section class="checkout-card account-details" aria-labelledby="account-details-title">
+          <div class="section-heading form-section-heading">
+            <span class="section-icon" aria-hidden="true"><svg><use href="#icon-user"></use></svg></span>
+            <span>
+              <h2 id="account-details-title">Your registration details</h2>
+              <p>All fields are required. Enter the student&apos;s information exactly as it should appear on the account.</p>
+            </span>
+          </div>
+
           <div class="form-fields">
             <label>
               <span>Full name <b>*</b></span>
-              <input type="text" name="full_name" autocomplete="name" placeholder="e.g. Ayesha Khan" required />
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#icon-user"></use></svg>
+                <input type="text" name="full_name" autocomplete="name" placeholder="e.g. Ayesha Khan" required />
+              </div>
             </label>
             <label>
               <span>Email address <b>*</b></span>
-              <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required />
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
+                <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required />
+              </div>
             </label>
             <label>
               <span>Password <b>*</b></span>
-              <div class="password-field">
+              <div class="field-control password-field">
+                <svg class="field-icon" aria-hidden="true"><use href="#icon-lock"></use></svg>
                 <input type="password" name="password" autocomplete="new-password" placeholder="At least 8 characters" minlength="8" data-password-input required />
                 <button class="password-toggle" type="button" data-password-toggle aria-label="Show password" aria-pressed="false">
                   <svg class="password-show-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -63,123 +94,165 @@
             </label>
             <label>
               <span>Confirm password <b>*</b></span>
-              <input type="password" name="confirm_password" autocomplete="new-password" placeholder="Type the same password again" minlength="8" required />
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#icon-lock"></use></svg>
+                <input type="password" name="confirm_password" autocomplete="new-password" placeholder="Type the same password again" minlength="8" required />
+              </div>
             </label>
             <label>
               <span>Student WhatsApp number <b>*</b></span>
-              <input type="tel" name="student_whatsapp" autocomplete="tel" inputmode="tel" placeholder="03XX XXXXXXX — for updates" required />
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
+                <input type="tel" name="student_whatsapp" autocomplete="tel" inputmode="tel" placeholder="03XX XXXXXXX — for updates" required />
+              </div>
             </label>
             <label>
               <span>Parent&apos;s WhatsApp number <b>*</b></span>
-              <input type="tel" name="parent_whatsapp" inputmode="tel" placeholder="03XX XXXXXXX — for parent updates" required />
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
+                <input type="tel" name="parent_whatsapp" inputmode="tel" placeholder="03XX XXXXXXX — for parent updates" required />
+              </div>
             </label>
             <label>
               <span>Gender <b>*</b></span>
-              <select name="gender" required>
-                <option value="" selected disabled>Select your gender</option>
-                <option value="female">Female</option>
-                <option value="male">Male</option>
-                <option value="prefer-not-to-say">Prefer not to say</option>
-              </select>
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#icon-user"></use></svg>
+                <select name="gender" required>
+                  <option value="" selected disabled>Select your gender</option>
+                  <option value="female">Female</option>
+                  <option value="male">Male</option>
+                  <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+              </div>
             </label>
             <label>
               <span>Are you a fresher or repeater? <b>*</b></span>
-              <select name="student_type" required>
-                <option value="" selected disabled>Select your student type</option>
-                <option value="fresher">Fresher</option>
-                <option value="repeater">Repeater</option>
-              </select>
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#icon-graduate"></use></svg>
+                <select name="student_type" required>
+                  <option value="" selected disabled>Select your student type</option>
+                  <option value="fresher">Fresher</option>
+                  <option value="repeater">Repeater</option>
+                </select>
+              </div>
             </label>
             <label>
               <span>MDCAT target score (out of 180) <b>*</b></span>
-              <input type="number" name="target_score" inputmode="numeric" min="0" max="180" placeholder="e.g. 165" required />
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#icon-target"></use></svg>
+                <input type="number" name="target_score" inputmode="numeric" min="0" max="180" placeholder="e.g. 165" required />
+              </div>
             </label>
             <label>
               <span>Province <b>*</b></span>
-              <select name="province" required>
-                <option value="" selected disabled>Select your province</option>
-                <option>Punjab</option>
-                <option>Sindh</option>
-                <option>Khyber Pakhtunkhwa</option>
-                <option>Balochistan</option>
-                <option>Islamabad Capital Territory</option>
-                <option>Azad Jammu &amp; Kashmir</option>
-                <option>Gilgit Baltistan</option>
-              </select>
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#icon-pin"></use></svg>
+                <select name="province" required>
+                  <option value="" selected disabled>Select your province</option>
+                  <option>Punjab</option>
+                  <option>Sindh</option>
+                  <option>Khyber Pakhtunkhwa</option>
+                  <option>Balochistan</option>
+                  <option>Islamabad Capital Territory</option>
+                  <option>Azad Jammu &amp; Kashmir</option>
+                  <option>Gilgit Baltistan</option>
+                </select>
+              </div>
             </label>
             <label>
               <span>City <b>*</b></span>
-              <input type="text" name="city" autocomplete="address-level2" placeholder="e.g. Lahore" required />
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#icon-city"></use></svg>
+                <input type="text" name="city" autocomplete="address-level2" placeholder="e.g. Lahore" required />
+              </div>
             </label>
             <label>
               <span>CNIC or B-form number <b>*</b></span>
-              <input type="text" name="cnic" inputmode="numeric" pattern="[0-9]{13}" maxlength="13" placeholder="13 digits, no dashes" required />
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#icon-id"></use></svg>
+                <input type="text" name="cnic" inputmode="numeric" pattern="[0-9]{13}" maxlength="13" placeholder="13 digits, no dashes" required />
+              </div>
             </label>
           </div>
         </section>
 
-        <div class="payment-layout">
-          <aside class="payment-sidebar">
-            <section class="checkout-card bank-card">
-              <p class="bank-kicker">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 9 9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></svg>
-                Bank details
-              </p>
-              <p class="bank-instruction">Transfer your selected plan total to this account.</p>
+        <section class="checkout-card payment-details" aria-labelledby="payment-details-title">
+          <div class="section-heading form-section-heading">
+            <span class="section-icon" aria-hidden="true"><svg><use href="#icon-receipt"></use></svg></span>
+            <span>
+              <h2 id="payment-details-title">Payment and receipt</h2>
+              <p>Transfer the exact total, upload the receipt, then enter its transaction ID.</p>
+            </span>
+          </div>
 
-              <dl class="bank-details">
-                <div><dt>Bank</dt><dd>Meezan Bank</dd></div>
-                <div><dt>Account title</dt><dd>MUHAMMAD HAYAN KHAN</dd></div>
-                <div>
-                  <dt>Account number</dt>
-                  <dd>00300114286728</dd>
-                  <button type="button" data-copy-value="00300114286728">Copy account number</button>
-                </div>
-              </dl>
-            </section>
-          </aside>
+          <div class="payment-total" aria-label="Total amount to transfer">
+            <span>Total amount to transfer</span>
+            <strong data-plan-total>PKR 4,000</strong>
+            <small>One-time payment for your selected plan</small>
+          </div>
 
-          <section class="checkout-card payment-proof" aria-labelledby="payment-proof-title">
-            <div class="section-heading">
-              <span class="section-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M6 2h12a2 2 0 0 1 2 2v18l-3-2-3 2-2-2-2 2-3-2-3 2V4a2 2 0 0 1 2-2Z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
-              </span>
+          <section class="bank-transfer-card" aria-labelledby="bank-transfer-title">
+            <div class="bank-transfer-heading">
+              <span class="bank-transfer-icon" aria-hidden="true"><svg><use href="#icon-bank"></use></svg></span>
               <span>
-                <h2 id="payment-proof-title">Submit payment proof</h2>
-                <p>Enter the details exactly as shown on your receipt.</p>
+                <h3 id="bank-transfer-title">Bank transfer</h3>
+                <p>Send the amount above to this Meezan Bank account.</p>
               </span>
             </div>
 
-            <div class="form-fields">
-            <label>
-              <span>Transaction ID <b>*</b></span>
-              <input type="text" name="transaction_id" placeholder="Reference or transaction number" required />
-            </label>
-            <label>
-              <span>Transaction time <b>*</b></span>
-              <input type="datetime-local" name="transaction_time" required />
-            </label>
+            <dl class="bank-details">
+              <div class="bank-detail-row">
+                <dt>Bank name</dt><dd>Meezan Bank</dd>
+              </div>
+              <div class="bank-detail-row">
+                <dt>Account title</dt><dd>MUHAMMAD HAYAN KHAN</dd>
+                <button type="button" data-copy-value="MUHAMMAD HAYAN KHAN" aria-label="Copy account title">
+                  <svg aria-hidden="true"><use href="#icon-copy"></use></svg><span data-copy-label>Copy</span>
+                </button>
+              </div>
+              <div class="bank-detail-row">
+                <dt>Account number</dt><dd>00300114286728</dd>
+                <button type="button" data-copy-value="00300114286728" aria-label="Copy account number">
+                  <svg aria-hidden="true"><use href="#icon-copy"></use></svg><span data-copy-label>Copy</span>
+                </button>
+              </div>
+              <div class="bank-detail-row bank-detail-iban">
+                <dt>IBAN</dt><dd>PK67MEZN0000300114286728</dd>
+                <button type="button" data-copy-value="PK67MEZN0000300114286728" aria-label="Copy IBAN">
+                  <svg aria-hidden="true"><use href="#icon-copy"></use></svg><span data-copy-label>Copy</span>
+                </button>
+              </div>
+            </dl>
 
             <label class="receipt-upload">
-              <span class="receipt-upload-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 14v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5"/></svg>
-              </span>
+              <span class="receipt-upload-icon" aria-hidden="true"><svg><use href="#icon-upload"></use></svg></span>
               <strong>Upload payment receipt</strong>
               <small data-receipt-name>PNG or JPG up to 10MB</small>
               <input type="file" name="receipt" accept="image/png,image/jpeg" data-receipt-input required />
             </label>
-
-            <button class="payment-submit" type="submit">Submit payment proof <span aria-hidden="true">&rarr;</span></button>
-            <output class="payment-status" data-payment-status hidden>
-              <strong>Payment proof is ready.</strong>
-              <span>Your details have been completed and are ready for verification.</span>
-            </output>
-            </div>
           </section>
-        </div>
+
+          <div class="payment-fields">
+            <label>
+              <span>Transaction ID <b>*</b></span>
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#icon-receipt"></use></svg>
+                <input type="text" name="transaction_id" placeholder="Reference or transaction number" required />
+              </div>
+            </label>
+          </div>
+
+          <p class="payment-note">Transfer the exact amount shown above. Make sure the receipt clearly shows the amount and transaction details so our team can verify your registration without delay.</p>
+
+          <button class="payment-submit" type="submit">Submit registration form <span aria-hidden="true">&rarr;</span></button>
+          <output class="payment-status" data-payment-status hidden>
+            <strong>Registration form is ready.</strong>
+            <span>Your details and payment receipt are ready for verification.</span>
+          </output>
+        </section>
       </form>
     </main>
 
-    <script src="purchase-flow.js?v=20260810-2"></script>
+    <script src="purchase-flow.js?v=20260810-3"></script>
   </body>
 </html>
