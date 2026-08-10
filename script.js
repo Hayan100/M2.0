@@ -1,5 +1,25 @@
 const carousel = document.querySelector("[data-carousel]");
 
+const accountLink = document.querySelector("[data-account-link]");
+
+if (accountLink) {
+  const accountOrigin = "https://mdcatemy.com";
+  const accountLabel = accountLink.querySelector("[data-account-label]");
+  const loginIcon = accountLink.querySelector('[data-account-icon="login"]');
+  const dashboardIcon = accountLink.querySelector('[data-account-icon="dashboard"]');
+
+  fetch(`${accountOrigin}/api/v1/users/me`, { credentials: "include" })
+    .then((response) => response.ok ? response.json() : null)
+    .then((account) => {
+      if (account?.status !== "success") return;
+      accountLink.href = `${accountOrigin}/dashboard`;
+      accountLabel.textContent = "Dashboard";
+      loginIcon.hidden = true;
+      dashboardIcon.hidden = false;
+    })
+    .catch(() => {});
+}
+
 if (carousel) {
   const slides = [...carousel.querySelectorAll(".platform-slide")];
   const dots = [...carousel.querySelectorAll(".carousel-dot")];

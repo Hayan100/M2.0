@@ -10,10 +10,57 @@
     <title>MDCATEMY | MDCAT 2026 Revision</title>
     <link rel="preload" href="assets/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" as="image" href="assets/platform-previews/dashboard.webp" type="image/webp" />
-    <link rel="stylesheet" href="styles.css?v=20260809-56" />
+    <link rel="stylesheet" href="styles.css?v=20260810-1" />
   </head>
   <body>
-    <main>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="site-brand" href="#top" aria-label="MDCATEMY home">
+          <img src="assets/MDCATEMY-logo.webp" alt="MDCATEMY" />
+        </a>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="#revision-session">Revision Session</a>
+          <a href="#quiz-builder">Quiz Builder</a>
+          <a href="#plans">Pricing</a>
+          <a href="#faq">FAQs</a>
+          <a href="#about">About</a>
+        </nav>
+
+        <div class="site-header-actions">
+          <a class="account-link" data-account-link href="https://mdcatemy.com/login">
+            <svg data-account-icon="login" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <path d="m10 17 5-5-5-5M15 12H3" />
+            </svg>
+            <svg data-account-icon="dashboard" viewBox="0 0 24 24" fill="none" aria-hidden="true" hidden>
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <path d="M14 17h7m-3.5-3.5L21 17l-3.5 3.5" />
+            </svg>
+            <span data-account-label>Login</span>
+          </a>
+
+          <details class="site-menu">
+            <summary aria-label="Open navigation menu">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+            </summary>
+            <nav class="site-mobile-nav" aria-label="Mobile navigation">
+              <a href="#revision-session">Revision Session</a>
+              <a href="#quiz-builder">Quiz Builder</a>
+              <a href="#plans">Pricing</a>
+              <a href="#faq">FAQs</a>
+              <a href="#about">About</a>
+            </nav>
+          </details>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
       <section class="hero">
         <div class="hero-doodles" aria-hidden="true">
         <img src="assets/doodles/atom.webp" alt="" />
@@ -112,7 +159,7 @@
         </div>
       </section>
 
-      <section class="social-proof" id="testimonials">
+      <section class="social-proof" id="about">
         <div class="proof-shell">
           <header class="proof-heading">
             <p>Real student stories</p>
@@ -967,7 +1014,7 @@
       </aside>
     </details>
 
-    <script src="script.js?v=20260809-3"></script>
+    <script src="script.js?v=20260810-1"></script>
     <script src="purchase-flow.js?v=20260810-3"></script>
   </body>
 </html>

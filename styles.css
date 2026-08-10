@@ -61,6 +61,168 @@ body {
   font-family: "Rubik", ui-sans-serif, system-ui, sans-serif;
 }
 
+.site-header {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  background: #121212;
+  box-shadow: 0 4px 24px rgb(0 0 0 / 25%);
+}
+
+.site-header-inner {
+  width: min(100%, 1560px);
+  min-height: 78px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 80px);
+  display: grid;
+  grid-template-columns: minmax(145px, 1fr) auto minmax(145px, 1fr);
+  align-items: center;
+  gap: clamp(18px, 3vw, 46px);
+}
+
+.site-brand {
+  min-height: 78px;
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+}
+
+.site-brand img {
+  width: clamp(142px, 13vw, 198px);
+  height: auto;
+  display: block;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 2.2vw, 36px);
+  white-space: nowrap;
+}
+
+.site-nav a,
+.site-mobile-nav a {
+  color: rgb(255 255 255 / 78%);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible,
+.site-mobile-nav a:hover,
+.site-mobile-nav a:focus-visible {
+  color: #fff;
+}
+
+.site-header-actions {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 10px;
+}
+
+.account-link {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #ffc600;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: #ffc600;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.account-link:hover,
+.account-link:focus-visible {
+  background: #ffc600;
+  color: #171717;
+  transform: translateY(-1px);
+}
+
+.account-link svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.account-link svg[hidden] {
+  display: none;
+}
+
+.site-menu {
+  display: none;
+  position: relative;
+}
+
+.site-menu summary {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  cursor: pointer;
+  list-style: none;
+}
+
+.site-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.site-menu summary svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.site-mobile-nav {
+  width: min(18rem, calc(100vw - 40px));
+  padding: 8px;
+  position: absolute;
+  z-index: 1;
+  top: calc(100% + 10px);
+  right: 0;
+  display: grid;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 12px;
+  background: #181818;
+  box-shadow: 0 14px 34px rgb(0 0 0 / 32%);
+}
+
+.site-mobile-nav a {
+  padding: 11px 12px;
+  border-radius: 8px;
+}
+
+.site-mobile-nav a:hover,
+.site-mobile-nav a:focus-visible {
+  background: rgb(255 255 255 / 7%);
+}
+
+#revision-session,
+#quiz-builder,
+#plans,
+#faq,
+#about {
+  scroll-margin-top: 98px;
+}
+
 .hero {
   min-height: 100vh;
   overflow: hidden;
@@ -2538,6 +2700,19 @@ body.modal-open {
 }
 
 @media (max-width: 1100px) {
+  .site-header-inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 16px;
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .site-menu {
+    display: block;
+  }
+
   .hero-shell {
     min-height: auto;
   }
@@ -2672,6 +2847,33 @@ body.modal-open {
 }
 
 @media (max-width: 560px) {
+  .site-header-inner {
+    min-height: 70px;
+    padding-inline: 18px;
+  }
+
+  .site-brand {
+    min-height: 70px;
+  }
+
+  .site-brand img {
+    width: 132px;
+  }
+
+  .site-header-actions {
+    gap: 8px;
+  }
+
+  .account-link {
+    min-height: 38px;
+    padding-inline: 12px;
+  }
+
+  .site-menu summary {
+    width: 38px;
+    height: 38px;
+  }
+
   .hero-doodles img {
     opacity: 0.035;
   }
