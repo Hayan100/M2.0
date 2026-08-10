@@ -10,7 +10,7 @@
     <title>MDCATEMY | MDCAT 2026 Revision</title>
     <link rel="preload" href="assets/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" as="image" href="assets/platform-previews/dashboard.webp" type="image/webp" />
-    <link rel="stylesheet" href="styles.css?v=20260810-8" />
+    <link rel="stylesheet" href="styles.css?v=20260810-9" />
   </head>
   <body>
     <header class="site-header">
@@ -50,7 +50,7 @@
             <div class="user-account-dropdown">
               <a data-dashboard-link href="https://mdcatemy.com/dashboard">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><path d="M14 17h7m-3.5-3.5L21 17l-3.5 3.5" /></svg>
-                Dashboard
+                My Camp
               </a>
               <button type="button" data-logout-button>
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3" /><path d="M21 3v18H10" /></svg>
@@ -932,12 +932,18 @@
                 <input type="number" name="target_score" inputmode="numeric" min="0" max="180" placeholder="Out of 180" required />
               </label>
 
-              <label data-registration-email-field>
+              <label class="registration-account-select">
+                <span>Choose your account</span>
+                <select name="account_choice" data-registration-account-choice required>
+                  <option value="" selected disabled>Choose your account</option>
+                  <option value="fresh">Create a fresh account</option>
+                </select>
+              </label>
+              <label data-registration-email-field hidden>
                 <span>Email address</span>
                 <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required />
               </label>
-              <button class="registration-fresh-toggle" type="button" data-registration-fresh-toggle hidden>Create a fresh account</button>
-              <label data-registration-password-field>
+              <label data-registration-password-field hidden>
                 <span>Create a strong password</span>
                 <input type="password" name="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required />
               </label>
@@ -1134,7 +1140,7 @@
       </aside>
     </details>
 
-    <script src="script.js?v=20260810-2"></script>
+    <script src="script.js?v=20260810-3"></script>
     <script src="purchase-flow.js?v=20260810-3"></script>
   </body>
 </html>

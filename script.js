@@ -13,8 +13,8 @@ if (registration) {
   const form = registration.querySelector("[data-registration-form]");
   const planName = registration.querySelector("[data-registration-plan-name]");
   const totals = registration.querySelectorAll("[data-registration-total], [data-registration-copy-total]");
+  const accountChoice = registration.querySelector("[data-registration-account-choice]");
   const emailField = registration.querySelector("[data-registration-email-field]");
-  const freshAccountToggle = registration.querySelector("[data-registration-fresh-toggle]");
   const passwordField = registration.querySelector("[data-registration-password-field]");
   const emailInput = form.elements.email;
   const passwordInput = form.elements.password;
@@ -23,19 +23,18 @@ if (registration) {
   const status = registration.querySelector("[data-registration-status]");
   const bank = registration.querySelector("[data-registration-bank]");
   let accountEmail = "";
-  let isFreshAccount = false;
 
-  const setFreshAccount = (fresh) => {
-    isFreshAccount = fresh;
-    emailInput.readOnly = Boolean(accountEmail && !fresh);
-    emailInput.value = fresh ? "" : accountEmail;
-    passwordField.hidden = Boolean(accountEmail && !fresh);
-    emailInput.required = true;
-    passwordInput.required = fresh || !accountEmail;
+  const updateAccountFields = () => {
+    const isFreshAccount = accountChoice.value === "fresh";
+    emailField.hidden = !isFreshAccount;
+    passwordField.hidden = !isFreshAccount;
+    emailInput.required = isFreshAccount;
+    passwordInput.required = isFreshAccount;
+    if (!isFreshAccount) emailInput.value = "";
     passwordInput.value = "";
-    freshAccountToggle.hidden = !accountEmail;
-    freshAccountToggle.textContent = fresh ? `Use ${accountEmail}` : "Create a fresh account";
   };
+
+  updateAccountFields();
 
   const renderPlan = (key) => {
     const plan = registrationPlans[key];
@@ -48,13 +47,15 @@ if (registration) {
   setRegistrationAccount = (account) => {
     accountEmail = account?.email || "";
     if (!accountEmail) return;
-    setFreshAccount(false);
+    accountChoice.innerHTML = "";
+    accountChoice.add(new Option("Choose your account", "", true, true));
+    accountChoice.options[0].disabled = true;
+    accountChoice.add(new Option(accountEmail, "existing"));
+    accountChoice.add(new Option("Create a fresh account", "fresh"));
+    updateAccountFields();
   };
 
-  freshAccountToggle.addEventListener("click", () => {
-    setFreshAccount(!isFreshAccount);
-    if (isFreshAccount) emailInput.focus();
-  });
+  accountChoice.addEventListener("change", updateAccountFields);
   receiptInput.addEventListener("change", () => {
     receiptName.textContent = receiptInput.files[0]?.name || "PNG or JPG up to 10MB";
   });

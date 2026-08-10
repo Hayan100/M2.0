@@ -162,6 +162,10 @@ body {
   display: none;
 }
 
+.account-link[hidden] {
+  display: none;
+}
+
 .user-account-menu {
   position: relative;
 }
@@ -5786,27 +5790,6 @@ body.modal-open {
 .registration-transaction {
   display: grid;
   gap: 7px;
-}
-
-.registration-fresh-toggle {
-  min-height: 52px;
-  align-self: end;
-  padding: 0 15px;
-  border: 1px solid #dcd9d0;
-  border-radius: 11px;
-  background: #fcfbf8;
-  color: #171717;
-  cursor: pointer;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  text-align: left;
-}
-
-.registration-fresh-toggle:hover,
-.registration-fresh-toggle:focus-visible {
-  border-color: #c69a00;
-  background: #fff8db;
 }
 
 .registration-fields-grid > label > span,
