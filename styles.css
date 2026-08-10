@@ -5796,13 +5796,31 @@ body.modal-open {
   display: none;
 }
 
-.registration-account-select,
-.registration-fields-grid > label[data-registration-email-field],
-.registration-fields-grid > label[data-registration-password-field] {
+.registration-new-account-fields {
   grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.registration-new-account-fields[hidden] {
+  display: none;
+}
+
+.registration-new-account-fields label {
+  display: grid;
+  gap: 7px;
+}
+
+@media (max-width: 640px) {
+  .registration-new-account-fields {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
 }
 
 .registration-fields-grid > label > span,
+.registration-new-account-fields label > span,
 .registration-transaction > span {
   color: #4c4a44;
   font-size: 12px;
@@ -5811,6 +5829,7 @@ body.modal-open {
 
 .registration-fields-grid input,
 .registration-fields-grid select,
+.registration-new-account-fields input,
 .registration-transaction input {
   width: 100%;
   min-height: 52px;
@@ -5826,11 +5845,18 @@ body.modal-open {
 }
 
 .registration-fields-grid select {
-  appearance: auto;
+  appearance: none;
+  padding-right: 46px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23605c54' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  cursor: pointer;
 }
 
 .registration-fields-grid input:focus,
 .registration-fields-grid select:focus,
+.registration-new-account-fields input:focus,
 .registration-transaction input:focus {
   border-color: #c69a00;
   background: #fff;
@@ -5910,7 +5936,7 @@ body.modal-open {
 }
 
 .registration-bank[open] .registration-bank-dot {
-  border-color: #2bb89a;
+  border-color: #ffc600;
 }
 
 .registration-bank[open] .registration-bank-dot::after {
@@ -5920,7 +5946,7 @@ body.modal-open {
   border-radius: 50%;
   position: absolute;
   inset: 2.5px;
-  background: #2bb89a;
+  background: #ffc600;
 }
 
 .registration-bank summary strong,
@@ -5973,10 +5999,43 @@ body.modal-open {
 
 .registration-bank-body dd {
   margin: 4px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   color: #171717;
   font-size: 13px;
   font-weight: 700;
   overflow-wrap: anywhere;
+}
+
+.registration-copy {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #dcd9d0;
+  border-radius: 9px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: #3f3b34;
+  cursor: pointer;
+}
+
+.registration-copy:hover,
+.registration-copy:focus-visible {
+  border-color: #c69a00;
+  background: #fff8db;
+  color: #8d6b00;
+}
+
+.registration-copy svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .registration-receipt {
@@ -5999,9 +6058,28 @@ body.modal-open {
   font-weight: 750;
 }
 
+.registration-upload-icon {
+  width: 24px;
+  height: 24px;
+  color: #9a7400;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .registration-receipt > small {
   color: #716d63;
   font-size: 11px;
+}
+
+.registration-receipt-preview {
+  width: min(180px, 74%);
+  max-height: 104px;
+  border: 1px solid #e1d7ba;
+  border-radius: 8px;
+  object-fit: contain;
+  background: #fff;
 }
 
 .registration-receipt input {

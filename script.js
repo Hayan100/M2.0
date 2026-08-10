@@ -14,20 +14,20 @@ if (registration) {
   const planName = registration.querySelector("[data-registration-plan-name]");
   const totals = registration.querySelectorAll("[data-registration-total], [data-registration-copy-total]");
   const accountChoice = registration.querySelector("[data-registration-account-choice]");
-  const emailField = registration.querySelector("[data-registration-email-field]");
-  const passwordField = registration.querySelector("[data-registration-password-field]");
+  const newAccountFields = registration.querySelector("[data-registration-new-account-fields]");
   const emailInput = form.elements.email;
   const passwordInput = form.elements.password;
   const receiptInput = registration.querySelector("[data-registration-receipt]");
   const receiptName = registration.querySelector("[data-registration-receipt-name]");
+  const receiptPreview = registration.querySelector("[data-registration-receipt-preview]");
   const status = registration.querySelector("[data-registration-status]");
   const bank = registration.querySelector("[data-registration-bank]");
   let accountEmail = "";
+  let receiptPreviewUrl = "";
 
   const updateAccountFields = () => {
     const isFreshAccount = accountChoice.value === "fresh";
-    emailField.hidden = !isFreshAccount;
-    passwordField.hidden = !isFreshAccount;
+    newAccountFields.hidden = !isFreshAccount;
     emailInput.required = isFreshAccount;
     passwordInput.required = isFreshAccount;
     if (!isFreshAccount) emailInput.value = "";
@@ -57,7 +57,24 @@ if (registration) {
 
   accountChoice.addEventListener("change", updateAccountFields);
   receiptInput.addEventListener("change", () => {
-    receiptName.textContent = receiptInput.files[0]?.name || "PNG or JPG up to 10MB";
+    const receipt = receiptInput.files[0];
+    receiptName.textContent = receipt?.name || "PNG or JPG up to 10MB";
+    if (receiptPreviewUrl) URL.revokeObjectURL(receiptPreviewUrl);
+    if (!receipt) {
+      receiptPreview.hidden = true;
+      receiptPreview.removeAttribute("src");
+      return;
+    }
+    receiptPreviewUrl = URL.createObjectURL(receipt);
+    receiptPreview.src = receiptPreviewUrl;
+    receiptPreview.hidden = false;
+  });
+  registration.querySelectorAll("[data-copy-text]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      await navigator.clipboard?.writeText(button.dataset.copyText);
+      button.title = "Copied";
+      window.setTimeout(() => { button.title = button.getAttribute("aria-label"); }, 1400);
+    });
   });
 
   document.querySelectorAll("[data-register-plan]").forEach((button) => {
